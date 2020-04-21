@@ -19,7 +19,10 @@ async function listContacts() {
 async function getContactById(contactId) {
   const contacts = await getContactFromDB();
   const contactToFind = contacts.find(({ id }) => id === contactId);
-  console.log(`The contact with ${contactId} has been found: `, contactToFind);
+  console.log(
+    `The contact with id: ${contactId} has been found: `,
+    contactToFind
+  );
 }
 
 async function removeContact(contactId) {
@@ -28,7 +31,7 @@ async function removeContact(contactId) {
   const contactsToWrite = JSON.stringify(filtredContacts);
 
   fsPromises.writeFile(contactsPath, contactsToWrite);
-  console.log(`The contact with ${contactId} has been deleted!`);
+  console.log(`The contact with id: ${contactId} has been deleted!`);
   console.log(`Now the contact list looks like this: `, filtredContacts);
 }
 
@@ -37,7 +40,7 @@ async function addContact(id, name, email, phone) {
   contacts.push({ id, name, email, phone });
   const contactsToWrite = JSON.stringify(contacts);
   fsPromises.writeFile(contactsPath, contactsToWrite);
-  console.log(`The contact with ${name} has been added!`);
+  console.log(`The contact with name ${name} has been added!`);
   console.log(`Now the contact list looks like this: `, contacts);
 }
 
